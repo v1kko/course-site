@@ -7,6 +7,7 @@ CourseSite::Application.routes.draw do
 	get  "homepage/logout"
 	get  "homepage/profile"
 	post "homepage/save_profile"
+	get  "homepage/schedule"
 
 	# administrative
 	get  "admin/users"

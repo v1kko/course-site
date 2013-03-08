@@ -1,0 +1,15 @@
+week 1: # generates header "Week 1"
+    lectures:    # --------------------------------\
+        - week-1 # generates url: Rails.root + 'lectures' + '/' + 'week-1'
+        - week-2
+
+    resources:        # --------------------------------\
+        - style-guide # generates url: Rails.root + 'resources' + '/' + 'style-guide'
+
+    problem-sets:       # --------------------------------\
+        - problem-set-2 # generates url: Rails.root + 'problem-sets' + '/' + 'problem-set-2'
+
+week 2:
+    lectures: 
+         - week-5
+         - week-6

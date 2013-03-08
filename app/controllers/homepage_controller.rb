@@ -26,5 +26,10 @@ class HomepageController < ApplicationController
 		@user.update_attributes(params[:user])
 		redirect_to :root
 	end
+
+	def schedule
+		@title = "Schedule"
+		@user = current_user
+	end
 	
 end

@@ -1,0 +1,23 @@
+<% 
+require "yaml"
+yml_output = YAML.load_file(Rails.root + "test/schedule.yml")
+%>
+
+<div class="tabbable">
+	<% yml_output.each do |week| %>
+		<h1><%= week[0] %></h1>
+		<ul>
+		<% week[1].each do |page| %>
+			<li><%= page[0] %></li>
+			<ul>
+			<% page[1].each do |subpage| %>
+				<% link = Rails.root + page[0] + subpage %>
+				<li><a href="<%= '../' + page[0] + '/' + subpage %>"><%= subpage %></a></li>
+			<% end %>
+			<br>
+			</ul>
+		<% end %>
+		</ul>
+	<% end %>
+</div>
+
