@@ -8,6 +8,7 @@ class Page < ActiveRecord::Base
 
 	belongs_to :section  # parent section
 	has_many :subpages   # content tabs
+    has_many :users, :through => :done
 	has_one :pset        # linked pset if available
 
 	# Make sure the subpages are always ordered
