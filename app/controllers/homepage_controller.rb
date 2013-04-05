@@ -30,6 +30,7 @@ class HomepageController < ApplicationController
 	def schedule
 		@title = "Schedule"
 		@user = current_user
+        @mypage = Page.where(:title => "Quiz 0")
 	end
 	
 end

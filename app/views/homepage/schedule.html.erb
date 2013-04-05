@@ -1,9 +1,31 @@
 <% 
 require "yaml"
 yml_output = YAML.load_file(Rails.root + "test/schedule.yml")
+
+done_pages = Page.where(:title => "Quiz 0")
+section = done_pages[0].section
+page = done_pages[0]
+
+page_ids = [51, 50]
 %>
+<h1><%= done_pages[0].slug %></h1>
+<h1><%= done_pages[0].path %></h1>
+<%= link_to "test", "/#{section.slug}/#{page.slug}" %>
+<%= page_done_icon(@user, page) %>
 
 <div class="tabbable">
+    <h1>Page ID test</h1>
+    <ul>
+    <% page_ids.each do |page_id| %>
+        <% page = Page.where(:id => page_id)[0] %>
+        <li><%= page.section.title %></li>
+        <ul>
+            <li><%= link_to (page.title + page_done_icon(@user, page)).html_safe, "/#{page.section.slug}/#{page.slug}" %></li>
+        </ul>
+    <% end %>
+    </ul>
+
+
 	<% yml_output.each do |week| %>
 		<h1><%= week[0] %></h1>
 		<ul>
@@ -11,7 +33,6 @@ yml_output = YAML.load_file(Rails.root + "test/schedule.yml")
 			<li><%= page[0] %></li>
 			<ul>
 			<% page[1].each do |subpage| %>
-				<% link = Rails.root + page[0] + subpage %>
 				<li><a href="<%= '../' + page[0] + '/' + subpage %>"><%= subpage %></a></li>
 			<% end %>
 			<br>

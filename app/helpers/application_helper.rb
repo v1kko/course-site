@@ -1,11 +1,14 @@
 module ApplicationHelper
 
-	def page_done_icon(user, pset)
+	def page_done_icon(user, page)
 		logger.debug user.inspect
-		logger.debug pset.inspect
-		if user && pset && Submit.where(:user_id => user.id, :pset_id => pset.id).count > 0
+		logger.debug page.inspect
+		if user && page && Done.where(:user_id => user.id, :page_id => page.id).count > 0
 			" <i class='icon-thumbs-up'></i>".html_safe
-		else
+        # debugging (can't log in)
+		elsif page && Done.where(:user_id => 1, :page_id => page.id).count > 0
+			" <i class='icon-thumbs-up'></i>".html_safe
+        else
 			""
 		end
 	end

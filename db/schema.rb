@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405103628) do
+ActiveRecord::Schema.define(:version => 20130405190748) do
 
   create_table "answers", :force => true do |t|
     t.integer  "user_id"
@@ -48,13 +48,13 @@ ActiveRecord::Schema.define(:version => 20130405103628) do
   end
 
   create_table "dones", :force => true do |t|
-    t.integer  "post_id"
+    t.integer  "page_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "dones", ["post_id"], :name => "index_dones_on_post_id"
+  add_index "dones", ["page_id"], :name => "index_dones_on_page_id"
   add_index "dones", ["user_id"], :name => "index_dones_on_user_id"
 
   create_table "groups", :force => true do |t|
