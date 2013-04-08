@@ -1,0 +1,15 @@
+<% 
+# require "yaml"
+# yml_output = YAML.load_file(Rails.root + "test/schedule.yml")
+
+#Done.create(:user_id => @user.id, :url => "http://google.com")
+#Done.do_url(@user, "http://google.com")
+#Done.undo_url(@user, "http://google.com")
+%>
+
+First link:
+<%= link_to_with_icon(@user, "test link met url", "http://google.com") %>
+<br>
+Second link:
+<%= link_to_with_icon(@user, "test link met page title", "Quiz 0") %>
+

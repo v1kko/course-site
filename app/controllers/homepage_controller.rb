@@ -27,4 +27,9 @@ class HomepageController < ApplicationController
 		redirect_to :root
 	end
 	
+	def schedule
+		@title = "Schedule"
+		@user = current_user
+	end
+
 end
