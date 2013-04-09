@@ -3,10 +3,10 @@ module ScheduleHelper
 	def link_to_with_icon(user, link_title, destination)
 		url = determine_url(destination)
 		thumb = use_thumb(user, url)
+		toggle = toggle_done_link(url)
 		link = link_to (link_title + thumb).html_safe, url
-		toggle = toggle_done_link(url,link)
 
-		return link
+		return toggle + link
 	end
 
 	def determine_url(destination)
@@ -34,10 +34,10 @@ module ScheduleHelper
 		return thumb
 	end
 
-	def toggle_done_link(url, link)
-		form_tag('/homepage/toggle_page_done', :method => 'post') do
-			hidden_field_tag(:url, "http://google.com")
-			submit_tag('do-undo')
+	def toggle_done_link(url)
+		form_tag('/homepage/toggle_page_done', :method => 'post', :style => 'display:inline') do
+			hidden_field_tag(:url, url) + 
+			submit_tag('(un)do')
 		end
 	end
 

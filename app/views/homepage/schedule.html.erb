@@ -24,16 +24,17 @@
 	}
 </script>
 
-<%= form_tag('/homepage/toggle_page_done', :method => 'post') do %>
-	<%= submit_tag('do-undo') %>
-	<%= hidden_field_tag(:url, "http://google.com") %>
-<% end %>
-
-
-First link:
-<%= link_to_with_icon(@user, "test link met url", "http://google.com") %>
-<br>
-Second link:
-<%= link_to_with_icon(@user, "test link met page title", "Quiz 0") %>
-
+<div class="tabbable">
+	<%= link_to_with_icon(@user, "test link met url", "http://google.com") %>
+	<br>
+	<%= link_to_with_icon(@user, "test link met page title", "Quiz 0") %>
+	<br>
+	<%= link_to_with_icon(@user, "test link met page title", "Quiz 1") %>
+	<br>
+	<%= link_to_with_icon(@user, "test link met page title", "Problem set 0") %>
+	<br>
+	<%= link_to_with_icon(@user, "test link met page title", "Problem set 1") %>
+	<br>
+	<%= link_to_with_icon(@user, "test link met page title", "Problem set 2") %>
+</div>
 
