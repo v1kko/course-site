@@ -15,8 +15,17 @@ class Done < ActiveRecord::Base
 			logger.warn("More than one done for user: '#{user.name}' and " +
 						"url: '#{url}', destroying all.")
 		else
-			to_undo = to_undos[0]
-			Done.destroy(to_undo)
+			to_undos.each do |to_undo|
+				Done.destroy(to_undo)
+			end
+		end
+	end
+
+	def self.toggle_url(user, url)
+		if user && Done.where(:user_id => user.id, :url => url).count > 0
+			self.undo_url(user, url)
+		elsif user
+			self.do_url(user, url)
 		end
 	end
 

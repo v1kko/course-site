@@ -7,9 +7,33 @@
 #Done.undo_url(@user, "http://google.com")
 %>
 
+<script type="text/javascript">
+	function proceed (url) {
+		var form = document.createElement('form');
+		form.setAttribute('method', 'post');
+		form.setAttribute('action', '/homepage/toggle_page_done');
+		form.style.display = 'hidden';
+
+		var input = document.createElement("input");
+		input.setAttribute("type", "hidden");
+		input.setAttribute("name", "url");
+		input.setAttribute("value", url);
+		form.appendChild(input);
+
+		document.body.appendChild(form);
+	}
+</script>
+
+<%= form_tag('/homepage/toggle_page_done', :method => 'post') do %>
+	<%= submit_tag('do-undo') %>
+	<%= hidden_field_tag(:url, "http://google.com") %>
+<% end %>
+
+
 First link:
 <%= link_to_with_icon(@user, "test link met url", "http://google.com") %>
 <br>
 Second link:
 <%= link_to_with_icon(@user, "test link met page title", "Quiz 0") %>
+
 

@@ -32,4 +32,11 @@ class HomepageController < ApplicationController
 		@user = current_user
 	end
 
+	def toggle_page_done
+		if current_user
+			Done.toggle_url(current_user, params[:url])
+		end
+		redirect_to '/homepage/schedule'
+	end
+
 end

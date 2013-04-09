@@ -1,10 +1,19 @@
 module ScheduleHelper
 
 	def link_to_with_icon(user, link_title, destination)
-		# Determine if the page is a title of the website or an external url
+		url = determine_url(destination)
+		thumb = use_thumb(user, url)
+		link = link_to (link_title + thumb).html_safe, url
+		toggle = toggle_done_link(url,link)
+
+		return link
+	end
+
+	def determine_url(destination)
+		# Is destination a page title or an external url?
 		pages = Page.where(:title => destination)
 		if pages.empty?
-			url = destination
+			return destination
 		else
 			page = pages[0]
 			if pages.size > 1
@@ -12,15 +21,24 @@ module ScheduleHelper
 							"title '#{destination}'; using the first one: " +
 							"'#{page.title}'.")
 			end
-			url = url_for("/#{page.section.slug}/#{page.slug}")
+			return url_for("/#{page.section.slug}/#{page.slug}")
 		end
+	end
 
-		# Add thumb if the user-url combination exists
+	def use_thumb(user, url)
 		thumb = ""
 		if user && Done.where(:user_id => user.id, :url => url).count > 0
 			thumb = " <i class='icon-thumbs-up'></i>".html_safe
 		end
-		link_to (link_title + thumb).html_safe, url
+
+		return thumb
+	end
+
+	def toggle_done_link(url, link)
+		form_tag('/homepage/toggle_page_done', :method => 'post') do
+			hidden_field_tag(:url, "http://google.com")
+			submit_tag('do-undo')
+		end
 	end
 
 end
